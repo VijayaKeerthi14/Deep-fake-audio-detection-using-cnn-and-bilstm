@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://d1sr9z1pdl3mb7.cloudfront.net/wp-content/uploads/2022/03/23162352/voice-recognition-1024x576.jpg'); /* Replace with your image */
+            background-size: cover;
+            background-position: center;
+            filter:blur(10px);
+            
+            z-index:-1;
+        
+        }
+       
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+            z-index: 3; /* Ensure images are above the blurred background */
+            position: relative; /* Position relative for z-index */
+        }
+        .upload-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff0000, #ff7300);
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 115, 0, 0.8);
+            transition: 0.3s;
+        }
+        .upload-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 115, 0, 1);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div> <!-- Background blur overlay -->
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <p><strong>Result:</strong> {{ result }}</p>
+        <p><strong>Confidence:</strong> {{ confidence }}</p>
+
+        <h2>MFCC Image</h2>
+        <img src="{{ url_for('static', filename=mfcc_img) }}" alt="MFCC Image">
+
+        <h2>Mel Spectrogram Image</h2>
+        <img src="{{ url_for('static', filename=mel_img) }}" alt="Mel Spectrogram Image">
+
+        <br><a href="/" class="upload-btn">Upload Another File</a>
+    </div>
+</body>
+</html>
